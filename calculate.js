@@ -1,26 +1,25 @@
 "use strict";
 
 function Calculator() {
+  var methods = {
+    '+': function(a,b) {
+      return a + b;
+    },
+    '-': function(a,b) {
+      return a - b;
+    }
+  }
+
   this.calculate = function(string) {
-    var plus = string.indexOf('+');
-    var minus = string.indexOf('-');
-    var resultArr = [];
-    var result = 0;
+    var split = string.split(' ');
+    var a = split[0];
+    var b = split[2];
+    var op = split[1];
 
-    if ( plus !== -1 ) {
-        resultArr = string.split('+');
-        result = Number(resultArr[0]) + Number(resultArr[1]);
-    } else if ( minus !== -1 ) {
-      resultArr = string.split('-');
-      result = Number(resultArr[0]) - Number(resultArr[1]);
-    } else {
-      console.log('Error in if/else statement');
-    };
-
-    return console.log(result);
+    return methods[op](+a, +b);
   };
 
-  this.addMethod = function(name, func) {
-    
+  this.addMethod = function(name,func) {
+    methods[name] = func;
   };
 }
